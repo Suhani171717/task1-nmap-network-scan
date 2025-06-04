@@ -17,12 +17,6 @@ Perform a TCP SYN scan on your local network using Nmap to identify open ports a
    bash
    nmap -sS 192.168.1.0/24 -oN scan_result.txt
 
-Files Included
-
-scan_result.txt: Output of the Nmap scan
-report.md: Analysis of scan results and associated risks
-screenshots/: Screenshot of terminal output or Nmap results
-README.md: This file
 
 Submission
 This repository is for the Cyber Security Internship - Task 1.
