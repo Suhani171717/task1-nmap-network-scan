@@ -1,0 +1,80 @@
+
+# Task 1: Nmap Network Scan and Basic Reconnaissance
+
+## Objective  
+Perform a TCP SYN scan on the local network using Nmap to identify active devices, open ports, and exposed services. Understand how attackers use port scanning to detect vulnerabilities and how network administrators can defend against them.
+
+---
+
+## Tools Used  
+- [Nmap](https://nmap.org/) (Network Mapper)  
+- Command Prompt (Windows)  
+- Google Search (for researching services and risks)  
+- (Optional) Wireshark (for packet-level inspection)
+
+---
+
+## Nmap Scan Output Summary  
+
+| IP Address     | Open Ports       | Detected Services         | Security Notes                                 |
+|----------------|------------------|----------------------------|------------------------------------------------|
+| 192.168.1.1    | 80, 443, 1900    | HTTP, HTTPS, UPnP         | Web server; UPnP can be risky if exposed       |
+| 192.168.1.5    | 22, 139, 445     | SSH, NetBIOS, Microsoft SMB | SSH brute-force risk; SMB has known exploits  |
+| 192.168.1.10   | None             | All ports closed          | Device not exposing any services               |
+
+---
+
+## Screenshots  
+
+> ![Scan Result](screenshots/scan_output.png)  
+> ![Command Prompt](screenshots/cmd_nmap.png)  
+
+_Note: Screenshots show the terminal command and output of the Nmap scan using the command `nmap -sS 192.168.1.0/24 -oN scan_result.txt`. All screenshots are saved in the `screenshots/` folder._
+
+---
+
+## Key Findings  
+
+- Open ports indicate which services are available and potentially vulnerable.
+- Port 445 (SMB) is commonly targeted in malware and ransomware attacks (e.g., WannaCry).
+- Port 22 (SSH) is secure only if strong authentication is enforced.
+- Devices with all ports closed (like 192.168.1.10) are best protected.
+
+---
+
+## Risks Identified  
+
+1. **Port 22 – SSH**  
+   - Risk: Brute-force or credential stuffing attacks  
+   - Recommendation: Use key-based authentication and disable root login
+
+2. **Port 445 – SMB**  
+   - Risk: Vulnerable to worms/ransomware  
+   - Recommendation: Disable SMBv1; keep Windows up to date
+
+3. **Port 1900 – UPnP**  
+   - Risk: Can be exploited in DDoS reflection attacks  
+   - Recommendation: Disable UPnP on public-facing devices
+
+---
+
+## Best Practices Learned  
+
+- Run port scans to assess network exposure regularly  
+- Disable unnecessary services and close unused ports  
+- Use firewalls to filter traffic from untrusted sources  
+- Monitor open ports over time to detect unauthorized changes
+
+---
+
+## Conclusion  
+
+This task demonstrated how easy it is to map network devices and identify open services using Nmap. While port scanning is a common attacker technique, it is also a valuable tool for security professionals. Proactively identifying and securing open ports is a fundamental step in reducing attack surfaces and strengthening network defense.
+
+---
+
+> Repository Contains:  
+> - This `report.md` file  
+> - `scan_result.txt` (raw scan output)  
+> - Screenshots   
+> - `README.md` describing the task  
